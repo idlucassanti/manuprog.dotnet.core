@@ -27,7 +27,7 @@ namespace MP.Core.Infra.Data.Maps
 
             builder.HasMany(x => x.Compras)
                 .WithOne(y => y.Produto)
-                .HasForeignKey(y => y.Id);
+                .HasForeignKey(y => y.ProdutoId);
         }
     }
 }
