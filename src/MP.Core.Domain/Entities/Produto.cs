@@ -23,6 +23,8 @@ namespace MP.Core.Domain.Entities
 
         public decimal Preco { get; private set; }
 
+        public ICollection<Compra> Compras { get; set; }
+
         private void Validation(string nome, string codigo, decimal preco)
         {
             DomainValidationException.When(string.IsNullOrEmpty(nome), "Nome deve ser informado!");

@@ -1,4 +1,5 @@
 ﻿using MP.Core.Domain.Validations;
+using System.Collections.ObjectModel;
 
 namespace MP.Core.Domain.Entities
 {
@@ -24,6 +25,8 @@ namespace MP.Core.Domain.Entities
         public string Documento { get; private set; }
 
         public string Telefone { get; private set; }
+
+        public ICollection<Compra> Compras { get; set; }
 
         private void Validation(string nome, string documento, string telefone)
         {
