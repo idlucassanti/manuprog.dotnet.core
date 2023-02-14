@@ -20,6 +20,22 @@ namespace MP.Core.Application.Services
             _pessoaRepository = pessoaRepository;
         }
 
+        public async Task<ResultService<PessoaDTO>> ObterPessoaPorIdAsync(int pessoaId)
+        {
+            var pessoa = await _pessoaRepository.ObterPessoaPorIdAsync(pessoaId);
+
+            if (pessoa == null) return ResultService.Fail<PessoaDTO>("Objeto não encontrado");
+
+            return ResultService.Ok<PessoaDTO>(_mapper.Map<PessoaDTO>(pessoa));
+        }
+
+        public async Task<ResultService<ICollection<PessoaDTO>>> ObterListaPessoasAsync()
+        {
+            var pessoas = await _pessoaRepository.ObterListaPessoasAsync();
+
+            return ResultService.Ok<ICollection<PessoaDTO>>(_mapper.Map<ICollection<PessoaDTO>>(pessoas));
+        }
+
         public async Task<ResultService<PessoaDTO>> InserirAsync(PessoaDTO pessoaDTO)
         {
             //validou se é null

@@ -24,5 +24,30 @@ namespace MP.Core.Api.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ObterPessoaPorId(int pessoaId)
+        {
+            var result = await _pessoaService.ObterPessoaPorIdAsync(pessoaId);
+
+            if (!result.IsSuccess) return BadRequest(result);
+
+            if (result == null) return NoContent();
+
+            return Ok(result);
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ObterListaPessoasAsync()
+        {
+            var result = await _pessoaService.ObterListaPessoasAsync();
+
+            if (!result.IsSuccess) return BadRequest();
+
+            if (result == null) return NoContent();
+
+            return Ok(result);
+        }
     }
 }
